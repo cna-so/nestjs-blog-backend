@@ -1,5 +1,11 @@
 // User.entity.ts
-import { Entity, PrimaryGeneratedColumn, Column, OneToMany } from 'typeorm';
+import {
+  Entity,
+  PrimaryGeneratedColumn,
+  Column,
+  OneToMany,
+  CreateDateColumn,
+} from 'typeorm';
 import { Post } from '../../post/entities/post.entity';
 
 @Entity('users')
@@ -12,6 +18,9 @@ export class User {
 
   @Column()
   password: string;
+
+  @CreateDateColumn({ name: 'createdAt' })
+  createdAt: Date;
 
   @OneToMany(() => Post, (post) => post.creator)
   posts: Post[];
